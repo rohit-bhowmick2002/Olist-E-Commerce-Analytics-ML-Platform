@@ -17,6 +17,7 @@
 
 <br/>
 
+[![Dataset](https://img.shields.io/badge/📥_Dataset-Kaggle_Olist-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 ![Rows](https://img.shields.io/badge/rows-1,551,698-2E86AB?style=flat-square)
 ![Tables](https://img.shields.io/badge/tables-9-2E86AB?style=flat-square)
 ![SQL Queries](https://img.shields.io/badge/SQL_queries-55%2F55_passing-6A994E?style=flat-square)
@@ -283,7 +284,20 @@ Olist is Brazil's largest marketplace aggregator — small merchants sell throug
 
 ## 📚 Dataset
 
-**Brazilian E-Commerce Public Dataset by Olist** — real anonymised commercial data released under a permissive license on Kaggle.
+<div align="center">
+
+### 📥 Download the dataset from Kaggle
+
+[![Kaggle Dataset](https://img.shields.io/badge/Kaggle-Brazilian_E--Commerce_by_Olist-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+**🔗 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce**
+
+*Free · Kaggle account required · CC BY-NC-SA 4.0*
+
+</div>
+
+**Brazilian E-Commerce Public Dataset by Olist** — real anonymised commercial data.
+Company names in the review text were replaced with Game-of-Thrones house names for anonymisation; **all numbers are real**.
 
 | Table | Rows | Description |
 |---|---:|---|
@@ -490,16 +504,37 @@ cd olist_project
 pip install -r requirements.txt
 ```
 
-### 2️⃣ Get the data
-The 9 raw CSVs live in `data/`. If you cloned a slim mirror, fetch them from the
-[public Kaggle page](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-or the [fortunewalla mirror](https://github.com/fortunewalla/olist).
+### 2️⃣ Get the data (~120 MB — **not** in this repo)
+
+> ⚠️ **Why isn't the data here?** GitHub blocks files > 100 MB, and the built
+> SQLite warehouse is 140 MB. Committing 260 MB of data would also bloat the
+> repo for everyone who clones it. Standard practice in DS repos: link the
+> dataset, ship a downloader.
+
+**Option A — download from Kaggle (official source, requires free account):**
+
+[![Kaggle](https://img.shields.io/badge/Kaggle-Brazilian_E--Commerce_by_Olist-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+1. Go to → **https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce**
+2. Click **"Download"** (top-right) → you get `archive.zip` (~45 MB)
+3. Unzip into the `data/` folder of this repo:
+   ```bash
+   unzip ~/Downloads/archive.zip -d data/
+   ```
+
+**Option B — one-command download from a public mirror (no account needed):**
+
+```bash
+python src/download_data.py       # 9 CSVs → data/  (~5 s, 118 MB)
+```
+
+Either option gives you the same 9 CSV files.
 
 ### 3️⃣ Build everything
 ```bash
-python src/build_db.py            # 1.55M rows → data/olist.db  (~5 s)
-python ml/train_models.py         # trains 3 models             (~40 s)
-python src/make_kpi_images.py     # 11 KPI charts               (~8 s)
+python src/build_db.py            # 1.55M rows → data/olist.db    (~5 s)
+python ml/train_models.py         # trains 3 models               (~40 s)
+python src/make_kpi_images.py     # 11 KPI charts                 (~8 s)
 python src/make_html_dashboard.py # dashboard/olist_dashboard.html
 python src/make_report.py         # report/summary_report.html
 ```
